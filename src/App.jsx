@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import Navbar from './components/navbar'
 import Report from './pages/Report'
 import "./app.css";
+import CountryDetails from './pages/CountryDetails'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/page1' element={<Dashboard />} />
             <Route path='/pag2' element={<Report />} />
+            <Route path="/country/:code" element={<CountryDetails />} />
           </Routes>
         </Box>
       </div>
