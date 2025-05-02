@@ -24,6 +24,7 @@ const SearchBar = ({ onSearch }) => {
             value={searchInput}
             onChange={handleInputChange}
             backgroundColor="white"
+            width="100%"
           />
           <Button colorScheme="blue" type="submit">
             Search

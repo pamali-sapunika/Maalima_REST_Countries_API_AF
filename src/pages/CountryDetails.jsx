@@ -1,15 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Box, Text, Spinner, Image, Heading } from "@chakra-ui/react";
 import axios from "axios";
-import {
-  Box,
-  Spinner,
-  Heading,
-  Text,
-  Image,
-  VStack,
-  Stack,
-} from "@chakra-ui/react";
+
 
 const CountryDetails = () => {
   const { code } = useParams();
@@ -19,11 +12,11 @@ const CountryDetails = () => {
   useEffect(() => {
     const fetchCountry = async () => {
       try {
-        const res = await axios.get(`https://restcountries.com/v2/alpha/${code}`);
-        setCountry(res.data);
-        setLoading(false);
+        const res = await axios.get(`https://restcountries.com/v3.1/alpha/${code}`);
+        setCountry(res.data[0]);
       } catch (err) {
-        console.error("Error fetching country:", err);
+        console.error("Failed to fetch country:", err);
+      } finally {
         setLoading(false);
       }
     };
@@ -31,26 +24,19 @@ const CountryDetails = () => {
     fetchCountry();
   }, [code]);
 
-  if (loading) return <Spinner size="xl" mt={20} />;
+  if (loading) return <Spinner size="xl" mt={10} />;
 
-  if (!country) return <Text>Country not found.</Text>;
+  if (!country) return <Text mt={10}>Country not found.</Text>;
 
   return (
-    <Box p={8}>
-      <Stack direction={{ base: "column", md: "row" }} spacing={8}>
-        <Image src={country.flag} alt={country.name} maxW="300px" />
-        <VStack align="start" spacing={2}>
-          <Heading>{country.name}</Heading>
-          <Text><b>Native Name:</b> {country.nativeName}</Text>
-          <Text><b>Capital:</b> {country.capital}</Text>
-          <Text><b>Region:</b> {country.region}</Text>
-          <Text><b>Subregion:</b> {country.subregion}</Text>
-          <Text><b>Population:</b> {country.population.toLocaleString()}</Text>
-          <Text><b>Languages:</b> {country.languages.map(l => l.name).join(", ")}</Text>
-          <Text><b>Currencies:</b> {country.currencies.map(c => `${c.name} (${c.symbol})`).join(", ")}</Text>
-          <Text><b>Timezones:</b> {country.timezones.join(", ")}</Text>
-        </VStack>
-      </Stack>
+    <Box maxW="xl" mx="auto" mt={10} p={6} boxShadow="lg" borderRadius="lg" bg="gray.50">
+      <Heading mb={4}>{country.name.common}</Heading>
+      <Image src={country.flags.png} alt={country.name.common} mb={4} borderRadius="md" />
+      <Text><b>Capital:</b> {country.capital?.[0] || "N/A"}</Text>
+      <Text><b>Region:</b> {country.region}</Text>
+      <Text><b>Population:</b> {country.population.toLocaleString()}</Text>
+      <Text><b>Languages:</b> {country.languages ? Object.values(country.languages).join(", ") : "N/A"}</Text>
+      <Text><b>Timezones:</b> {country.timezones?.join(", ")}</Text>
     </Box>
   );
 };
