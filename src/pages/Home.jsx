@@ -6,6 +6,7 @@ import RegionFilter from "../components/RegionFilter";
 import LanguageFilter from "../components/LangaugeFilter";
 import FeaturedCountries from "../components/FeaturedCountries";
 import AllCountries from "../components/AllCountries";
+import LogoStyle1 from "../components/LogoStyle1";
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
@@ -93,10 +94,9 @@ const Home = () => {
             Discover countries by region, language, and culture
             </Text>
         </Box>
-    
-        <Text fontSize="3xl" my={6} textAlign="center">
-            Country Explorer
-        </Text>
+
+        <LogoStyle1 imageSrc="sailboat_yellow.png"/>
+
 
         <Box
             bgGradient="linear(to-r, teal.100, blue.100)"
@@ -104,6 +104,7 @@ const Home = () => {
             boxShadow="md"
             p={6}
             mb={8}
+            mt={10}
         >
             <Text textAlign="center" fontSize="2xl" fontWeight="bold" mb={4}>
             🌟 Featured Countries

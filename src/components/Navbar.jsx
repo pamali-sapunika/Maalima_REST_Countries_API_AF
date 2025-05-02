@@ -1,4 +1,4 @@
-import { Button, Container, Flex, HStack, Text, useColorMode } from "@chakra-ui/react";
+import { Button, Container, Flex, HStack, Text, useColorMode, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { LuMoon, LuSun } from "react-icons/lu";
 
@@ -29,13 +29,18 @@ const Navbar = () => {
             }}
             >
             <Flex h={20} alignItems={"center"} justifyContent={"space-between"} flexDir={{ base: "column", sm: "row" }}>
-                <Link to={"/"} fontSize={{ base: "22", sm: "19" }} color={"grey.800"}>
-                    Countries API
-                </Link>
+                <Flex alignItems="center">
+
+                    <Image src="sailboat_black.png" alt="Logo" boxSize="30px" mr={2} /> 
+                    <Link to={"/"} fontSize={{ base: "22", sm: "19" }} color={"grey.800"}>
+                        Countries API
+                    </Link>
+                </Flex>
 
                 <HStack spacing={2} alignItems={"center"}>
                     <Link to={"/dashboard"} fontSize={{ base: "12", sm: "12" }}>Dashboard</Link>
                     <Link to={"/report"} fontSize={{ base: "12", sm: "12" }}>Report</Link>
+
                     <Button onClick={toggleColorMode} size={['sm', 'md']}>
                     {colorMode === "light" ?  <LuMoon /> : <LuSun size={18} />}
                     </Button>

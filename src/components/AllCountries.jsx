@@ -18,43 +18,43 @@ const AllCountriesList = ({ countries, loading, currentPage, setCurrentPage, cou
   return (
     <>
       <SimpleGrid columns={[1, 2, 3, 4]} spacing={6} mt={6}>
-        {currentCountries.map((country) => (
-            <Link to={`/country/${country.cca3}`} style={{ textDecoration: "none" }}>
-                <Box
-                    key={country.cca3}
-                    p={4}
-                    borderWidth="1px"
-                    borderRadius="md"
-                    boxShadow="md"
-                    textAlign="center"
-                    _hover={{ boxShadow: "xl", cursor: "pointer", transform: "scale(1.02)" }}
-                    transition="all 0.2s"
-                >
-                    <Image
-                    src={country.flags.png}
-                    alt={country.name.common}
-                    borderRadius="md"
-                    mx="auto"
-                    h="150px"
-                    objectFit="cover"
-                    />
+            {currentCountries.map((country) => (
+        <Link 
+            key={country.cca3} // Move key here!
+            to={`/country/${country.cca3}`} 
+            style={{ textDecoration: "none" }}
+        >
+            <Box
+            p={4}
+            borderWidth="1px"
+            borderRadius="md"
+            boxShadow="md"
+            textAlign="center"
+            _hover={{ boxShadow: "xl", cursor: "pointer", transform: "scale(1.02)" }}
+            transition="all 0.2s"
+            >
+            <Image
+                src={country.flags.png}
+                alt={country.name.common}
+                borderRadius="md"
+                mx="auto"
+                h="150px"
+                objectFit="cover"
+            />
 
-                    <Text fontWeight="bold" mt={2} fontSize="xl">
-                    {country.name.common}
-                    </Text>
-                    
-                    <Text><b>Capital:</b> {country.capital?.[0] || "N/A"}</Text>
-                    <Text><b>Region:</b> {country.region}</Text>
-                    <Text><b>Population:</b> {country.population.toLocaleString()}</Text>
+            <Text fontWeight="bold" mt={2} fontSize="xl">
+                {country.name.common}
+            </Text>
 
-                    <Text>
-                    <b>Languages:</b>{" "}
-                    {country.languages ? Object.values(country.languages).join(", ") : "N/A"}
-                    </Text>
-
-                </Box>
-            </Link>
-        
+            <Text><b>Capital:</b> {country.capital?.[0] || "N/A"}</Text>
+            <Text><b>Region:</b> {country.region}</Text>
+            <Text><b>Population:</b> {country.population.toLocaleString()}</Text>
+            <Text>
+                <b>Languages:</b>{" "}
+                {country.languages ? Object.values(country.languages).join(", ") : "N/A"}
+            </Text>
+            </Box>
+        </Link>
         ))}
       </SimpleGrid>
 
