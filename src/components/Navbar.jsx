@@ -16,7 +16,7 @@ const Navbar = ({ user, handleLogout }) => {
           w="full" 
           top="0" 
           zIndex="999"
-          backdropFilter="blur(9px)" 
+          backdropFilter="blur(2px)" 
           _after={{
             content: '""',
             position: "absolute",

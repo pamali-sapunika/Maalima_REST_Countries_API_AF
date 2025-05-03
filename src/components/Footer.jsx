@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaGlobe } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <Box bg="gray.800" color="white" py={6} mt={12}>
+    <Box bg="gray.800" color="white" py={6} mt={12} width="100%">
       <Flex
         direction={{ base: "column", md: "row" }}
         align="center"
@@ -30,3 +30,18 @@ const Footer = () => {
 };
 
 export default Footer;
+
+// const Layout = ({ children }) => {
+//   return (
+//     <Flex direction="column" minHeight="100vh">
+//       {/* Main Content */}
+//       <Box flexGrow={1}>{children}</Box>
+
+//       {/* Footer */}
+//       <Footer />
+//     </Flex>
+//   );
+// };
+
+// export default Layout;
+
