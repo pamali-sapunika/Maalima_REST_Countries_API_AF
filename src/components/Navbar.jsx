@@ -31,7 +31,7 @@ const Navbar = () => {
             <Flex h={20} alignItems={"center"} justifyContent={"space-between"} flexDir={{ base: "column", sm: "row" }}>
                 <Flex alignItems="center">
 
-                    <Image src="sailboat_black.png" alt="Logo" boxSize="30px" mr={2} /> 
+                    <Image src="/sailboat_black.png" alt="Logo" boxSize="30px" mr={2} /> 
                     <Link to={"/"} fontSize={{ base: "22", sm: "19" }} color={"grey.800"}>
                         Countries API
                     </Link>

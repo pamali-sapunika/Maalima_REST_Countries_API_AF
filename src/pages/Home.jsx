@@ -95,7 +95,7 @@ const Home = () => {
             </Text>
         </Box>
 
-        <LogoStyle1 imageSrc="sailboat_yellow.png"/>
+        <LogoStyle1 imageSrc="/sailboat_yellow.png"/>
 
 
         <Box
