@@ -17,8 +17,8 @@ function App() {
     <>
       <div>
         <Box minH={"70vh"}>
-          <Navbar />
-          
+          <Navbar user={user} handleLogout={handleLogout} />
+
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/page1' element={<Dashboard />} />
@@ -29,12 +29,12 @@ function App() {
           </Routes>
         </Box>
 
-        {/* Move Login/Logout Button Outside Routes */}
+        {/* Move Login/Logout Button Outside Routes
         {user ? (
           <Button onClick={handleLogout} ml={4}>Logout</Button>
         ) : (
           <Button onClick={() => window.location.href = '/login'} ml={4}>Login</Button>
-        )}
+        )} */}
       </div>
     </>
   );
