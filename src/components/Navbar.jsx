@@ -1,4 +1,4 @@
-import { Button, Container, Flex, HStack, Text, useColorMode, Image } from "@chakra-ui/react";
+import { Button, Container, Flex, HStack, Box, useColorMode, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { LuMoon, LuSun } from "react-icons/lu";
 
@@ -8,25 +8,25 @@ const Navbar = ({ user, handleLogout }) => {
   
     return (
       <div>
-        <Container 
-          maxWidth={"container.2xl"} 
-          px={4} 
-          bg="transparent" 
-          position="fixed" 
-          w="full" 
-          top="0" 
-          zIndex="999"
-          backdropFilter="blur(2px)" 
-          _after={{
+        <Box
+        position="fixed"
+        top="0"
+        left="0"
+        right="0"
+        zIndex="999"
+        bg="transparent"
+        backdropFilter="blur(4px)"
+        _after={{
             content: '""',
             position: "absolute",
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            background: "rgba(173, 173, 173, 0.3)", 
-            zIndex: -1, 
-          }}
+            background: "rgba(173, 173, 173, 0.3)",
+            zIndex: -1,
+        }}
+        px={6}
         >
           <Flex h={20} alignItems={"center"} justifyContent={"space-between"} flexDir={{ base: "column", sm: "row" }}>
             <Flex alignItems="center">
@@ -51,7 +51,7 @@ const Navbar = ({ user, handleLogout }) => {
               )}
             </HStack>
           </Flex>
-        </Container>
+        </Box>
       </div>
     );
 };

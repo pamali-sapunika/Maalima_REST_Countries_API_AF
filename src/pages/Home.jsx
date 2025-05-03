@@ -75,10 +75,8 @@ const Home = () => {
   };
 
   return (
-    <Container maxW="container.xxl" px={0} bg="red.50">
-      {/* Hero Section */}
+    <Container maxW="container.xxl" px={0}>
       <Box height={{ base: "auto", md: "700px" }} position="relative" overflow="hidden">
-        {/* Blurred background image */}
         <Box
             position="absolute"
             top={0}
@@ -87,7 +85,7 @@ const Home = () => {
             height="100%"
             backgroundImage="url('/bg1.jpg')"
             backgroundSize="cover"
-            backgroundPosition="center"
+            backgroundPosition="center top"
             filter="blur(3px)"
             zIndex={0}
         />
@@ -233,8 +231,6 @@ const Home = () => {
             countriesPerPage={countriesPerPage}
             />
         </Box>
-
-        <Footer />
     </Container>
   );
 };
