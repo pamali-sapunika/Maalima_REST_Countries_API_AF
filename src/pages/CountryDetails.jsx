@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Box, Text, Spinner, Image, Heading, SimpleGrid, Stack, Link } from "@chakra-ui/react";
+import { Box, Text, Spinner, Image, Heading, SimpleGrid, Stack, Link, HStack, Card } from "@chakra-ui/react";
 import axios from "axios";
+import { FaPeopleRobbery } from "react-icons/fa6";
 
 const CountryDetails = () => {
   const { code } = useParams();
@@ -28,25 +29,65 @@ const CountryDetails = () => {
 
   return (
     <Box maxW="90%" mx="auto" mt="120px" p={6} boxShadow="lg" borderRadius="lg" bg="gray.50">
-      <Heading mb={4}>{country.name.common} ({country.cca3})</Heading>
-      <Image src={country.flags.png} alt={country.name.common} mb={4} borderRadius="md" maxW="200px" />
+      <Heading fontSize={"45px"}>{country.name.common} ({country.cca3})</Heading>
+      <Text fontWeight={"light"} mb={10}>{country.subregion || "N/A"}, {country.region}</Text>
 
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
-        <Text><b>Official Name:</b> {country.name.official}</Text>
-        <Text><b>Capital:</b> {country.capital?.[0] || "N/A"}</Text>
-        <Text><b>Region:</b> {country.region}</Text>
-        <Text><b>Subregion:</b> {country.subregion || "N/A"}</Text>
-        <Text><b>Population:</b> {country.population.toLocaleString()}</Text>
-        <Text><b>Languages:</b> {country.languages ? Object.values(country.languages).join(", ") : "N/A"}</Text>
-        <Text><b>Currencies:</b> {country.currencies ? Object.values(country.currencies).map(c => `${c.name} (${c.symbol})`).join(", ") : "N/A"}</Text>
-        <Text><b>Timezones:</b> {country.timezones?.join(", ")}</Text>
-        <Text><b>Landlocked:</b> {country.landlocked ? "Yes" : "No"}</Text>
-        <Text><b>Area:</b> {country.area.toLocaleString()} km²</Text>
-        <Text><b>Top-level domain:</b> {country.tld?.join(", ")}</Text>
-        <Text><b>Bordering Countries:</b> {country.borders?.join(", ") || "None"}</Text>
-        <Text><b>UN Member:</b> {country.unMember ? "Yes" : "No"}</Text>
-        <Text><b>Start of Week:</b> {country.startOfWeek}</Text>
-        <Text><b>Calling Code:</b> {country.idd ? `${country.idd.root}${country.idd.suffixes?.[0]}` : "N/A"}</Text>
+      <Box>
+        <Image src={country.flags.png} alt={country.name.common} mb={8} borderRadius="md" maxW="600px" />
+      </Box>
+     
+
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} mt={6}>
+        <Text>
+            Official Name:
+            <br />
+            <Text as="span"  fontSize="30px">
+                {country.name.official}
+            </Text>
+        </Text>
+
+        <Text>
+            Capital:{" "}
+            <Text as="span" fontWeight="bold">
+                {country.capital?.[0] || "N/A"}
+            </Text>
+        </Text>
+
+
+        
+        <HStack align="start" spacing={3}>
+        <FaPeopleRobbery style={{ marginTop: "5px" }} />
+        <Box>
+            <Text>
+            Population
+            </Text>
+            <Text as="span" fontWeight="bold" fontSize="30px">
+            {country.population.toLocaleString()}
+            </Text>
+        </Box>
+        </HStack>
+
+        <Card>
+            hi
+        </Card>
+        <Card>
+            hi
+        </Card>
+        <Card>
+            hi
+        </Card>
+
+
+        <Text>Languages:{country.languages ? Object.values(country.languages).join(", ") : "N/A"}</Text>
+        <Text>Currencies:{country.currencies ? Object.values(country.currencies).map(c => `${c.name} (${c.symbol})`).join(", ") : "N/A"}</Text>
+        <Text>Timezones:{country.timezones?.join(", ")}</Text>
+        <Text>Landlocked:{country.landlocked ? "Yes" : "No"}</Text>
+        <Text>Area:{country.area.toLocaleString()} km²</Text>
+        <Text>Top-level domain:{country.tld?.join(", ")}</Text>
+        <Text>Bordering Countries:{country.borders?.join(", ") || "None"}</Text>
+        <Text>UN Member:{country.unMember ? "Yes" : "No"}</Text>
+        <Text>Start of Week:{country.startOfWeek}</Text>
+        <Text>Calling Code:{country.idd ? `${country.idd.root}${country.idd.suffixes?.[0]}` : "N/A"}</Text>
       </SimpleGrid>
 
       {country.coatOfArms?.png && (
