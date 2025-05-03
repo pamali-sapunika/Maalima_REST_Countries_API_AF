@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Box, Text, Button, Spinner, Image,
+import {
+  Box,
+  Text,
+  Button,
+  Spinner,
+  Image,
   Flex,
   Card,
   CardBody,
@@ -8,7 +13,6 @@ import { Box, Text, Button, Spinner, Image,
   Divider,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const FeaturedCountries = () => {
   const [countries, setCountries] = useState([]);
@@ -55,47 +59,68 @@ const FeaturedCountries = () => {
   }, []);
 
   return (
-    <Box textAlign="center" mt={8}>
-        {loading ? (
+    <Box
+      mt={10}
+      px={4}
+      py={10}
+      backgroundImage="url('https://images.pexels.com/photos/919239/pexels-photo-919239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')"
+      backgroundSize="cover"
+      backgroundPosition="center"
+      backgroundRepeat="no-repeat"
+      borderRadius="xl"
+    >
+        <Text textAlign="center" fontSize="2xl" fontWeight="bold" mb={6} color="white">
+          Countries of the Day
+        </Text>
+
+        <Box
+            backdropFilter="blur(10px)"
+            backgroundColor="rgba(255, 255, 255, 0.2)"
+            borderRadius="xl"
+            padding={6}
+            boxShadow="lg"
+        >
+            {loading ? (
             <Spinner size="xl" />
-        ) : error ? (
+            ) : error ? (
             <Text color="red.500">{error}</Text>
-        ) : (
-            <Flex justify="center" flexWrap="wrap" gap={6} px={4} mb={10} mt={10}>
-            {countries.map((country) => (
+            ) : (
+            <Flex justify="center" flexWrap="wrap" gap={6}>
+                {countries.map((country) => (
                 <Card
                     key={country.cca3}
                     maxW="sm"
-                    // borderWidth="1px"
-                    // borderRadius="lg"
-                    // overflow="hidden"
                     width={{ base: "100%", sm: "45%", md: "30%", lg: "18%" }}
-                    >
+                    backdropFilter="blur(3px)"
+                    backgroundColor="rgba(255, 255, 255, 0.7)"
+                    boxShadow="md"
+                    
+                >
                     <Image
-                        src={country.flag}
-                        alt={`Flag of ${country.name}`}
-                        height="180px"
-                        objectFit="cover"
+                    src={country.flag}
+                    alt={`Flag of ${country.name}`}
+                    height="180px"
+                    objectFit="cover"
+                    borderTopRadius={"6px"}
                     />
                     <CardBody>
-                        <Heading size="md">{country.name}</Heading>
-                        <Text mt={2}><strong>Capital:</strong> {country.capital}</Text>
-                        <Text><strong>Region:</strong> {country.region}</Text>
-                        <Text><strong>Population:</strong> {country.population.toLocaleString()}</Text>
-                        <Text><strong>Languages:</strong> {country.languages}</Text>
+                    <Heading size="md">{country.name}</Heading>
+                    <Text mt={2}><strong>Capital:</strong> {country.capital}</Text>
+                    <Text><strong>Region:</strong> {country.region}</Text>
+                    <Text><strong>Population:</strong> {country.population.toLocaleString()}</Text>
+                    <Text><strong>Languages:</strong> {country.languages}</Text>
                     </CardBody>
-
                     <Divider />
-                    
                     <CardFooter justifyContent="center">
-                        <Button variant="solid" colorScheme="teal">
+                    <Button variant="solid" colorScheme="teal">
                         View More
-                        </Button>
+                    </Button>
                     </CardFooter>
                 </Card>
-            ))}
+                ))}
             </Flex>
-        )}
+            )}
+        </Box>
     </Box>
   );
 };

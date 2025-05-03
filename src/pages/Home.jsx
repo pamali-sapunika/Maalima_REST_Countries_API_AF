@@ -97,20 +97,7 @@ const Home = () => {
 
         <LogoStyle1 imageSrc="/sailboat_yellow.png"/>
 
-
-        <Box
-            bgGradient="linear(to-r, teal.100, blue.100)"
-            borderRadius="xl"
-            boxShadow="md"
-            p={6}
-            mb={8}
-            mt={10}
-        >
-            <Text textAlign="center" fontSize="2xl" fontWeight="bold" mb={4}>
-            🌟 Featured Countries
-            </Text>
-            <FeaturedCountries />
-        </Box>
+        <FeaturedCountries />
     
         <Flex justify="space-between" mb={6} wrap="wrap" gap={4} px={4}>
             <Box flex="1" minW="200px">
