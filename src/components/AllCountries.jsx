@@ -25,34 +25,35 @@ const AllCountriesList = ({ countries, loading, currentPage, setCurrentPage, cou
             style={{ textDecoration: "none" }}
         >
             <Box
-            p={4}
-            borderWidth="1px"
-            borderRadius="md"
-            boxShadow="md"
-            textAlign="center"
-            _hover={{ boxShadow: "xl", cursor: "pointer", transform: "scale(1.02)" }}
-            transition="all 0.2s"
-            >
-            <Image
-                src={country.flags.png}
-                alt={country.name.common}
+                p={4}
+                borderWidth="1px"
                 borderRadius="md"
-                mx="auto"
-                h="150px"
-                objectFit="cover"
-            />
+                boxShadow="md"
+                textAlign="center"
+                _hover={{ boxShadow: "xl", cursor: "pointer", transform: "scale(1.02)" }}
+                transition="all 0.2s"
+                backgroundColor={"white"}
+                >
+                <Image
+                    src={country.flags.png}
+                    alt={country.name.common}
+                    borderRadius="md"
+                    mx="auto"
+                    h="150px"
+                    objectFit="cover"
+                />
 
-            <Text fontWeight="bold" mt={2} fontSize="xl">
-                {country.name.common}
-            </Text>
+                <Text fontWeight="bold" mt={2} fontSize="xl">
+                    {country.name.common}
+                </Text>
 
-            <Text><b>Capital:</b> {country.capital?.[0] || "N/A"}</Text>
-            <Text><b>Region:</b> {country.region}</Text>
-            <Text><b>Population:</b> {country.population.toLocaleString()}</Text>
-            <Text>
-                <b>Languages:</b>{" "}
-                {country.languages ? Object.values(country.languages).join(", ") : "N/A"}
-            </Text>
+                <Text><b>Capital:</b> {country.capital?.[0] || "N/A"}</Text>
+                <Text><b>Region:</b> {country.region}</Text>
+                <Text><b>Population:</b> {country.population.toLocaleString()}</Text>
+                <Text>
+                    <b>Languages:</b>{" "}
+                    {country.languages ? Object.values(country.languages).join(", ") : "N/A"}
+                </Text>
             </Box>
         </Link>
         ))}

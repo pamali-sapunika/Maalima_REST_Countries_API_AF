@@ -7,6 +7,7 @@ import LanguageFilter from "../components/LangaugeFilter";
 import FeaturedCountries from "../components/FeaturedCountries";
 import AllCountries from "../components/AllCountries";
 import LogoStyle1 from "../components/LogoStyle1";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
@@ -72,7 +73,7 @@ const Home = () => {
   };
 
   return (
-    <Container maxW="container.xxl" px={0}>
+    <Container maxW="container.xxl" px={0} bg="red.50">
         {/* Hero Section */}
         <Box
             height={{ base: "500px", md: "700px" }}
@@ -99,17 +100,30 @@ const Home = () => {
 
         <FeaturedCountries />
     
-        <Flex justify="space-between" mb={6} wrap="wrap" gap={4} px={4}>
-            <Box flex="1" minW="200px">
-            <SearchBar onSearch={handleSearch} />
-            </Box>
-            <Box minW="150px">
-            <RegionFilter onSelectRegion={handleRegionSelect} />
-            </Box>
-            <Box minW="150px">
-            <LanguageFilter onSelectLanguage={handleLanguageSelect} />
-            </Box>
-        </Flex>
+        <Box
+            bgGradient="linear(to-r, whiteAlpha.700, blue.50)"
+            borderRadius="xl"
+            boxShadow="md"
+            p={6}
+            mt={8}
+            mx={4}
+            textAlign="center"
+            >
+            <Text fontSize="25px" fontWeight="light" mb={4}>
+                Search for Countries Worldwide
+            </Text>
+            <Flex justify="center" wrap="wrap" gap={4}>
+                <Box flex="1" minW="200px" maxW="500px">
+                <SearchBar onSearch={handleSearch} />
+                </Box>
+                <Box minW="150px">
+                <RegionFilter onSelectRegion={handleRegionSelect} />
+                </Box>
+                <Box minW="150px">
+                <LanguageFilter onSelectLanguage={handleLanguageSelect} />
+                </Box>
+            </Flex>
+        </Box>
     
         <Box px={4}>
             <AllCountries

@@ -9,6 +9,7 @@ import './app.css';
 import CountryDetails from './pages/CountryDetails';
 import Login from './pages/Login';
 import UserProfile from './pages/UserProfile';
+import Footer from './components/Footer';
 
 function App() {
   const { user, setUser, handleLogout } = useUserSession();
@@ -27,6 +28,8 @@ function App() {
             <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/userProfile" element={user ? <UserProfile user={user} /> : <Login setUser={setUser} />} />
           </Routes>
+
+          <Footer />
         </Box>
 
         {/* Move Login/Logout Button Outside Routes
