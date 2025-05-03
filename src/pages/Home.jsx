@@ -7,7 +7,6 @@ import LanguageFilter from "../components/LangaugeFilter";
 import FeaturedCountries from "../components/FeaturedCountries";
 import AllCountries from "../components/AllCountries";
 import LogoStyle1 from "../components/LogoStyle1";
-import Footer from "../components/Footer";
 import { FaRegHandPointer } from "react-icons/fa";
 import { GoLocation } from "react-icons/go";
 

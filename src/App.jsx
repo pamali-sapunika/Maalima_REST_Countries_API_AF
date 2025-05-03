@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { useUserSession } from './services/UserSession';
+import { useUserSession } from './sessions/UserSession';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Navbar from './components/navbar';

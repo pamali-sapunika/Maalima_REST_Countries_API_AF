@@ -3,13 +3,11 @@ import { useEffect, useState } from "react";
 import { Box, Text, Spinner, Image, Heading, SimpleGrid, Stack, Link, HStack, Card, VStack, Flex, Container } from "@chakra-ui/react";
 import axios from "axios";
 import { FaPeopleRobbery } from "react-icons/fa6";
-import LogoStyle1 from "../components/LogoStyle1.jsx";
 import { PiMapPinAreaBold } from "react-icons/pi";
 import { PiCityFill } from "react-icons/pi";
 import { IoLanguage } from "react-icons/io5";
 import { IoTime } from "react-icons/io5";
 import { MdCurrencyExchange } from "react-icons/md";
-import { GiRotaryPhone } from "react-icons/gi";
 import { GoLocation } from "react-icons/go";
 import RandomBackground from "../components/RandomBackground.jsx";
 

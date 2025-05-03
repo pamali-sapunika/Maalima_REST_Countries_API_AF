@@ -30,18 +30,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-// const Layout = ({ children }) => {
-//   return (
-//     <Flex direction="column" minHeight="100vh">
-//       {/* Main Content */}
-//       <Box flexGrow={1}>{children}</Box>
-
-//       {/* Footer */}
-//       <Footer />
-//     </Flex>
-//   );
-// };
-
-// export default Layout;
-

@@ -3,7 +3,7 @@ import { Select } from "@chakra-ui/react";
 const LanguageFilter = ({ onSelectLanguage }) => {
   return (
     <Select placeholder="Filter by language" onChange={(e) => onSelectLanguage(e.target.value)} my={4}>
-      <option value="eng">English</option> {/* Updated to 'eng' */}
+      <option value="eng">English</option> 
       <option value="fra">French</option>
       <option value="spa">Spanish</option>
       <option value="deu">German</option>

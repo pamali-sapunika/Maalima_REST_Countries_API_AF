@@ -1,7 +1,9 @@
 import React from "react";
 
 function CountryCard({ country }) {
+
   return (
+    
     <div className="card mb-3">
       <div className="card-body">
         <h5 className="card-title">{country.name.common}</h5>
@@ -10,6 +12,7 @@ function CountryCard({ country }) {
         <p className="card-text">Population: {country.population.toLocaleString()}</p>
       </div>
     </div>
+    
   );
 }
 

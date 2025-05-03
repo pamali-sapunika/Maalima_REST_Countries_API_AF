@@ -1,4 +1,3 @@
-// components/RegionFilter.jsx
 import { Select, Container } from "@chakra-ui/react";
 
 const RegionFilter = ({ onSelectRegion }) => {

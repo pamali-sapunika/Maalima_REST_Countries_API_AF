@@ -14,7 +14,6 @@ const Profile = ({ user }) => {
             <Text fontSize="md" color="gray.600" wordBreak="break-all">
               <strong>Session Token:</strong> {user.token}
             </Text>
-            {/* <Button colorScheme="teal" onClick={onLogout}>Logout</Button> */}
           </VStack>
         </CardBody>
       </Card>
