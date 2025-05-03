@@ -10,6 +10,8 @@ import { IoLanguage } from "react-icons/io5";
 import { IoTime } from "react-icons/io5";
 import { MdCurrencyExchange } from "react-icons/md";
 import { GiRotaryPhone } from "react-icons/gi";
+import { GoLocation } from "react-icons/go";
+import { FaMapMarkerAlt, FaMountain, FaBorderAll, FaUserFriends } from "react-icons/fa";
 
 const CountryDetails = () => {
   const { code } = useParams();
@@ -37,7 +39,20 @@ const CountryDetails = () => {
   return (
     <Box maxW="90%" mx="auto" mt="120px" p={6} boxShadow="lg" borderRadius="lg" bg="gray.50">
         <Heading fontSize={"45px"}>{country.name.common} ({country.cca3})</Heading>
-        <Text fontWeight={"light"} mb={10}>{country.subregion || "N/A"}, {country.region}</Text>
+        <HStack spacing={2}>
+            <GoLocation />
+            <Text fontWeight="light">
+                {country.subregion || "N/A"}, {country.region}
+            </Text>
+        </HStack>
+        {country.maps?.googleMaps && (
+            <Stack mb={10}>
+                <Link href={country.maps.googleMaps} isExternal color="blue.500">
+                    View on Google Maps
+                </Link>
+            </Stack>
+        )}
+
 
         <Box>
             <Image src={country.flags.png} alt={country.name.common} mb={8} borderRadius="md" maxW="600px" />
@@ -154,69 +169,64 @@ const CountryDetails = () => {
                 </HStack>
             </VStack>            
 
-            <VStack backgroundColor={"red.200"} p={4} borderRadius={"12"} borderColor={"gray.400"}>
+            <VStack backgroundColor={"red.200"} p={5} borderRadius={"12"} borderColor={"gray.400"} w="100%" height={"500px"}>
+            {country.coatOfArms?.png && (
+                <Box w="100%">
+                <Text mb={4}>{country.flags?.alt}</Text>
 
-                {country.coatOfArms?.png && (
-                    <Box w="90%">
-                        <Text mb={2}>{country.flags?.alt}</Text>
+                <Flex direction={{ base: "column", md: "row" }} justify="space-between" align="center" w="100%">
+                    {/* Left Side - Logo */}
+                    <Box flex="1" display="flex" justifyContent={{ base: "center", md: "flex-start" }} mb={{ base: 6, md: 0 }}>
+                        <Image
+                            src={country.coatOfArms.png}
+                            alt={`${country.name.common} Coat of Arms`}
+                            maxW="150px"
+                        />
+                    </Box>
 
-                        <br/>
-                        <Text>
+                    {/* Right Side - Details */}
+                    <VStack flex="2" pl={{ md: 6 }} align="stretch" spacing={4}>
+                        <Flex justify="space-between" align="center">
+                            <Text>
                             Coordinates:{" "}
                             <Text as="span" fontWeight="bold">
                                 {country.latlng?.join(", ") || "N/A"}
                             </Text>
-                        </Text>
-                
-                        <Text>
+                            </Text>
+                        </Flex>
+
+                        <Flex justify="space-between" align="center">
+                            <Text>
                             Landlocked:{" "}
                             <Text as="span" fontWeight="bold">
                                 {country.landlocked ? "Yes" : "No"}
                             </Text>
-                        </Text>
+                            </Text>
+                        </Flex>
 
-                        <Text>
+                        <Flex justify="space-between" align="center">
+                            <Text>
                             Borders:{" "}
                             <Text as="span" fontWeight="bold">
                                 {country.borders?.join(", ") || "None"}
                             </Text>
-                        </Text>
+                            </Text>
+                        </Flex>
 
-                        <Text>
+                        <Flex justify="space-between" align="center">
+                            <Text>
                             Demonyms (EN):{" "}
                             <Text as="span" fontWeight="bold">
                                 Male: {country.demonyms?.eng?.m || "N/A"}, Female: {country.demonyms?.eng?.f || "N/A"}
                             </Text>
-                        </Text>
-
-                        <Flex justify="flex-end" mr={10}>
-                            <Image
-                                src={country.coatOfArms.png}
-                                alt={`${country.name.common} Coat of Arms`}
-                                maxW="150px"
-                            />
+                            </Text>
                         </Flex>
-                    </Box>
-                )}
+                    </VStack>
+                </Flex>
+                </Box>
+            )}
             </VStack>
-
-            {/* <Text>Currencies:{country.currencies ? Object.values(country.currencies).map(c => `${c.name} (${c.symbol})`).join(", ") : "N/A"}</Text>
-            <Text>Timezones:{country.timezones?.join(", ")}</Text>
-            <Text>Landlocked:{country.landlocked ? "Yes" : "No"}</Text>
-            <Text>Area:{country.area.toLocaleString()} km²</Text>
-            <Text>Top-level domain:{country.tld?.join(", ")}</Text>
-            <Text>Bordering Countries:{country.borders?.join(", ") || "None"}</Text>
-            <Text>UN Member:{country.unMember ? "Yes" : "No"}</Text>
-            <Text>Calling Code:{country.idd ? `${country.idd.root}${country.idd.suffixes?.[0]}` : "N/A"}</Text> */}
-        </SimpleGrid>
-
-        {country.maps?.googleMaps && (
-            <Stack mt={6} align="center">
-                <Link href={country.maps.googleMaps} isExternal color="blue.500">
-                    View on Google Maps
-                </Link>
-            </Stack>
-        )}
+        </SimpleGrid>    
     </Box>
   );
 };
