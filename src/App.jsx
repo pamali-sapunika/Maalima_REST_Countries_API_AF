@@ -2,8 +2,10 @@
 import { Box } from '@chakra-ui/react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useUserSession } from './sessions/UserSession';
-import Navbar from './components/navbar';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Home from './pages/Home';
 import Report from './pages/Report';
 import CountryDetails from './pages/CountryDetails';

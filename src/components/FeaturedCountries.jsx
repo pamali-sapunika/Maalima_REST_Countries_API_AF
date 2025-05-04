@@ -13,6 +13,7 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import axios from "axios";
+import Slider from "react-slick";
 
 const FeaturedCountries = () => {
   const [countries, setCountries] = useState([]);
@@ -58,6 +59,17 @@ const FeaturedCountries = () => {
     fetchRandomCountries();
   }, []);
 
+  const carouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000, // Change country every 3 seconds
+    arrows: false, // Disable arrows
+  };
+
   return (
     <Box
       mt={10}
@@ -69,58 +81,56 @@ const FeaturedCountries = () => {
       backgroundRepeat="no-repeat"
       borderRadius="xl"
     >
-        <Text textAlign="center" fontSize="35px" fontWeight="medium" mb={6} color="white">
-          Countries of the Day
-        </Text>
+      <Text textAlign="center" fontSize="35px" fontWeight="medium" mb={6} color="white">
+        Countries of the Day
+      </Text>
 
-        <Box
-            backdropFilter="blur(10px)"
-            backgroundColor="rgba(255, 255, 255, 0.2)"
-            borderRadius="xl"
-            padding={6}
-            boxShadow="lg"
-        >
-            {loading ? (
-            <Spinner size="xl" />
-            ) : error ? (
-            <Text color="red.500">{error}</Text>
-            ) : (
-            <Flex justify="center" flexWrap="wrap" gap={6}>
-                {countries.map((country) => (
+      <Box
+        backdropFilter="blur(10px)"
+        backgroundColor="rgba(255, 255, 255, 0.2)"
+        borderRadius="xl"
+        padding={6}
+        boxShadow="lg"
+      >
+        {loading ? (
+          <Spinner size="xl" />
+        ) : error ? (
+          <Text color="red.500">{error}</Text>
+        ) : (
+          <Slider {...carouselSettings}>
+            {countries.map((country) => (
+              <Box key={country.cca3} mb={6}>
                 <Card
-                    key={country.cca3}
-                    maxW="sm"
-                    width={{ base: "100%", sm: "45%", md: "30%", lg: "18%" }}
-                    backdropFilter="blur(3px)"
-                    backgroundColor="rgba(255, 255, 255, 0.7)"
-                    boxShadow="md"
-                    
+                  backdropFilter="blur(3px)"
+                  backgroundColor="rgba(255, 255, 255, 0.7)"
+                  boxShadow="md"
                 >
-                    <Image
+                  <Image
                     src={country.flag}
                     alt={`Flag of ${country.name}`}
                     height="180px"
                     objectFit="cover"
                     borderTopRadius={"6px"}
-                    />
-                    <CardBody>
-                        <Heading size="md">{country.name}</Heading>
-                        <Text mt={2}><strong>Capital:</strong> {country.capital}</Text>
-                        <Text><strong>Region:</strong> {country.region}</Text>
-                        <Text><strong>Population:</strong> {country.population.toLocaleString()}</Text>
-                        <Text><strong>Languages:</strong> {country.languages}</Text>
-                    </CardBody>
-                    <Divider />
-                    <CardFooter justifyContent="center">
-                        <Button variant="solid" colorScheme="teal">
-                            View More
-                        </Button>
-                    </CardFooter>
+                  />
+                  <CardBody>
+                    <Heading size="md">{country.name}</Heading>
+                    <Text mt={2}><strong>Capital:</strong> {country.capital}</Text>
+                    <Text><strong>Region:</strong> {country.region}</Text>
+                    <Text><strong>Population:</strong> {country.population.toLocaleString()}</Text>
+                    <Text><strong>Languages:</strong> {country.languages}</Text>
+                  </CardBody>
+                  <Divider />
+                  <CardFooter justifyContent="center">
+                    <Button variant="solid" colorScheme="teal">
+                      View More
+                    </Button>
+                  </CardFooter>
                 </Card>
-                ))}
-            </Flex>
-            )}
-        </Box>
+              </Box>
+            ))}
+          </Slider>
+        )}
+      </Box>
     </Box>
   );
 };
