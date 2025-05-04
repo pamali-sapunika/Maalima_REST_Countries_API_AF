@@ -1,66 +1,59 @@
 import { Button, Container, Flex, HStack, Box, useColorMode, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { LuMoon, LuSun } from "react-icons/lu";
-import Favorites from "../pages/Favorites";
 
 const Navbar = ({ user, handleLogout }) => {
-    
-    const { colorMode, toggleColorMode } = useColorMode();
-  
-    return (
-      <div>
-        <Box
-        position="fixed"
-        top="0"
-        left="0"
-        right="0"
-        zIndex="999"
-        bg="transparent"
-        backdropFilter="blur(4px)"
-        _after={{
-            content: '""',
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: "rgba(173, 173, 173, 0.3)",
-            zIndex: -1,
-        }}
-        px={6}
-        >
-          <Flex h={20} alignItems={"center"} justifyContent={"space-between"} flexDir={{ base: "column", sm: "row" }}>
-            <Flex alignItems="center">
-              <Image src="/sailboat_black.png" alt="Logo" boxSize="30px" mr={2} /> 
-              <Link to={"/"} fontSize={{ base: "22", sm: "19" }} color={"grey.800"}>
-                Countries API
-              </Link>
-            </Flex>
-  
-            <HStack spacing={2} alignItems={"center"}>
-              {/* <Link to={"/dashboard"} fontSize={{ base: "12", sm: "12" }}>Dashboard</Link> */}
-              <Link to={"/report"} fontSize={{ base: "12", sm: "12" }}>Report</Link>
-  
-              <Button onClick={toggleColorMode} size={['sm', 'md']}>
-                {colorMode === "light" ? <LuMoon /> : <LuSun size={18} />}
-              </Button>
-  
-              {user ? (
-                <Button onClick={handleLogout} size="sm">Logout</Button>
-              ) : (
-                <Button onClick={() => window.location.href = '/login'} size="sm">Login</Button>
-              )}
+  const { colorMode, toggleColorMode } = useColorMode();
 
-            <Button as={Link} to="/favorites" colorScheme="blue" mt={4}>
-            Go to Favorites
-            </Button>
+  return (
+    <Box
+      position="fixed"
+      top="0"
+      left="0"
+      right="0"
+      zIndex="999"
+      bg="transparent"
+      backdropFilter="blur(4px)"
+      _after={{
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: "rgba(173, 173, 173, 0.3)",
+        zIndex: -1,
+      }}
+      px={6}
+    >
+      <Flex h={20} alignItems="center" justifyContent="space-between">
+        <Flex alignItems="center">
+          <Image src="/sailboat_black.png" alt="Logo" boxSize="30px" mr={2} />
+          <Link to="/" fontSize="19px" color="gray.800">
+            Countries API
+          </Link>
+        </Flex>
 
-            </HStack>
-          </Flex>
-        </Box>
-      </div>
-    );
+        <HStack spacing={3} alignItems="center">
+
+          {user ? (
+            <Button onClick={handleLogout} size="sm">Logout</Button>
+          ) : (
+            <Button as={Link} to="/login" size="sm">Login</Button>
+          )}
+
+          <Button as={Link} to="/favorites" size="sm" colorScheme="blue">
+            Favorites
+          </Button>
+
+          <Button onClick={toggleColorMode} size="sm">
+            {colorMode === "light" ? <LuMoon /> : <LuSun size={18} />}
+          </Button>
+
+        </HStack>
+      </Flex>
+    </Box>
+  );
 };
-  
 
 export default Navbar;
