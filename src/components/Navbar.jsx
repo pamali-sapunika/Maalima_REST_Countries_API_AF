@@ -1,9 +1,10 @@
-import { Button, Container, Flex, HStack, Box, useColorMode, Image } from "@chakra-ui/react";
+import { Button, Container, Flex, HStack, Box, useColorMode, Image, IconButton, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { LuMoon, LuSun } from "react-icons/lu";
+import { LuMoon, LuSun, LuMenu } from "react-icons/lu"; // Added LuMenu icon
 
 const Navbar = ({ user, handleLogout }) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onOpen, onClose } = useDisclosure(); // Chakra UI hook for controlling Drawer
 
   return (
     <Box
@@ -34,8 +35,8 @@ const Navbar = ({ user, handleLogout }) => {
           </Link>
         </Flex>
 
-        <HStack spacing={3} alignItems="center">
-
+        {/* Desktop/Tablet View (Hides hamburger menu) */}
+        <HStack spacing={3} alignItems="center" display={{ base: "none", md: "flex" }}>
           {user ? (
             <Button onClick={handleLogout} size="sm">Logout</Button>
           ) : (
@@ -49,9 +50,47 @@ const Navbar = ({ user, handleLogout }) => {
           <Button onClick={toggleColorMode} size="sm">
             {colorMode === "light" ? <LuMoon /> : <LuSun size={18} />}
           </Button>
-
         </HStack>
+
+        {/* Hamburger Menu for Mobile View */}
+        <IconButton
+          aria-label="Open Menu"
+          icon={<LuMenu />}
+          size="md"
+          onClick={onOpen}
+          display={{ base: "flex", md: "none" }} 
+        />
       </Flex>
+
+      {/* Drawer for Mobile Menu */}
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+          <DrawerOverlay />
+          <DrawerContent>
+              <DrawerCloseButton />
+              <DrawerHeader>Menu</DrawerHeader>
+
+              <DrawerBody>
+                <Flex direction="column" align="start" gap={4}>
+
+                  <Button as={Link} to="/favorites" size="sm" colorScheme="blue">
+                    Favorites
+                  </Button>
+
+                  <Button onClick={toggleColorMode} size="sm">
+                    {colorMode === "light" ? <LuMoon /> : <LuSun size={18} />}
+                  </Button>
+                </Flex>
+              </DrawerBody>
+
+              <DrawerFooter>
+                {user ? (
+                  <Button onClick={handleLogout} size="sm">Logout</Button>
+                ) : (
+                  <Button as={Link} to="/login" size="sm">Login</Button>
+                )}
+              </DrawerFooter>
+          </DrawerContent>
+      </Drawer>
     </Box>
   );
 };
