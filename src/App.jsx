@@ -12,6 +12,7 @@ import CountryDetails from './pages/CountryDetails';
 import Login from './pages/Login';
 import UserProfile from './pages/UserProfile';
 import Favorites from './pages/Favorites';
+import { UserProvider } from './context/UserContext';
 
 
 function App() {
@@ -23,14 +24,16 @@ function App() {
     <Box minH="100vh" display="flex" flexDirection="column">
       {!isLoginPage && <Navbar user={user} handleLogout={handleLogout} />}
       <Box flex="1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/report" element={<Report />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/country/:code" element={<CountryDetails />} />
-          <Route path="/login" element={<Login setUser={setUser} />} />
-          <Route path="/userProfile" element={user ? <UserProfile user={user} /> : <Login setUser={setUser} />} />
-        </Routes>
+        <UserProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/report" element={<Report />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/country/:code" element={<CountryDetails />} />
+            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/userProfile" element={<UserProfile />} />
+          </Routes>
+        </UserProvider>
       </Box>
       {!isLoginPage && <Footer />}
     </Box>

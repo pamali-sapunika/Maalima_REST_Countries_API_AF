@@ -1,14 +1,56 @@
-import { Container, Box, Button, FormControl, FormLabel, Input, Heading, useToast, FormHelperText } from '@chakra-ui/react';
-import { useState} from 'react';
-import { useUser } from '../context/UserContext'; // Import the React COntext hook
-import { useNavigate } from 'react-router-dom'; 
+// src/pages/Login.jsx
+import {
+  Container,
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Heading,
+  useToast,
+  FormHelperText,
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import { useUser } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
   const toast = useToast();
-  const { setUser } = useUser(); 
+  const { setUser } = useUser();
+  const navigate = useNavigate();
+
+  // const handleLogin = () => {
+  //   if (!username.trim()) {
+  //     toast({
+  //       title: 'Username required',
+  //       status: 'error',
+  //       duration: 3000,
+  //       isClosable: true,
+  //     });
+  //     return;
+  //   }
+
+  //   if (!password.trim()) {
+  //     toast({
+  //       title: 'Password required',
+  //       status: 'error',
+  //       duration: 3000,
+  //       isClosable: true,
+  //     });
+  //     return;
+  //   }
+
+  //   const user = {
+  //     username,
+  //     token: `${username}-${Date.now()}`,
+  //     favorites: [],
+  //   };
+
+  //   setUser(user); // This triggers localStorage update
+  //   navigate('/userProfile'); 
+  // };
 
   const handleLogin = () => {
     if (!username.trim()) {
@@ -20,7 +62,7 @@ const Login = () => {
       });
       return;
     }
-
+  
     if (!password.trim()) {
       toast({
         title: 'Password required',
@@ -30,16 +72,17 @@ const Login = () => {
       });
       return;
     }
-
+  
     const user = {
       username,
-      token: `${username}-${Date.now()}`, // Simulate token
+      token: `${username}-${Date.now()}`,
       favorites: [],
     };
-
-    setUser(user); // save in context
-    window.location.href = '/userProfile'; 
+  
+    setUser(user); // This triggers localStorage update
+    navigate('/userProfile'); 
   };
+  
 
   return (
     <Box
@@ -49,35 +92,32 @@ const Login = () => {
       bgPosition="center"
       bgRepeat="no-repeat"
       h="100vh"
-      backdropFilter="blur(10px)"
     >
       <Container centerContent py={{ base: 10, md: 20 }}>
         <Box bg="rgba(196, 196, 196, 0.6)" p={6} rounded="md" shadow="md" w="full" maxW="md">
-          <Heading mb={6} textAlign="center" fontSize={{ base: '2xl', md: '3xl' }} textColor={"white"}>
+          <Heading mb={6} textAlign="center" fontSize={{ base: '2xl', md: '3xl' }} color="white">
             Login
           </Heading>
           <FormControl mb={4}>
-            <FormLabel textColor={"white"}>Username</FormLabel>
+            <FormLabel color="white">Username</FormLabel>
             <Input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter your username"
-              isRequired
-              textColor={"white"}
-              _placeholder={{ textColor: "#852a7c" }} 
+              color="white"
+              _placeholder={{ color: "#852a7c" }}
             />
           </FormControl>
           <FormControl mb={4}>
-            <FormLabel textColor={"white"}>Password</FormLabel>
+            <FormLabel color="white">Password</FormLabel>
             <Input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              isRequired
-              _placeholder={{ textColor: "#852a7c" }} 
+              _placeholder={{ color: "#852a7c" }}
             />
-            <FormHelperText textColor={"black"}>Enter your password securely</FormHelperText>
+            <FormHelperText color="black">Enter your password securely</FormHelperText>
           </FormControl>
           <Button
             bgGradient="linear(to-r, #fda41a, #655186, #2386dc)"
