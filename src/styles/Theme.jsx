@@ -11,6 +11,7 @@ const theme = extendTheme({
 
   fonts: {
     heading: "'Poppins', sans-serif", // Using Poppins for headings
+    subheading: "'Merienda', cursive",
     body: "'Poppins', sans-serif", // Using Poppins for body text
   },
 

@@ -1,4 +1,4 @@
-import { Button, Container, Flex, HStack, Box, useColorMode, Image, IconButton, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure } from "@chakra-ui/react";
+import { Button, Container, Text, Flex, HStack, Box, useColorMode, Image, IconButton, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { LuMoon, LuSun, LuMenu } from "react-icons/lu"; // Added LuMenu icon
 
@@ -30,9 +30,15 @@ const Navbar = ({ user, handleLogout }) => {
       <Flex h={20} alignItems="center" justifyContent="space-between">
         <Flex alignItems="center">
           <Image src="/sailboat_black.png" alt="Logo" boxSize="30px" mr={2} />
-          <Link to="/" fontSize="25px" color="gray.800">
-            Countries
-          </Link>
+          <Text
+            as={Link}
+            to="/"
+            fontSize="22px"
+            color="gray.800"
+            fontFamily="'Merienda', cursive"
+          >
+            Maalima
+          </Text>
         </Flex>
 
         {/* Desktop/Tablet View (Hides hamburger menu) */}

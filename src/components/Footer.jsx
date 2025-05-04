@@ -11,7 +11,7 @@ const Footer = () => {
         px={{ base: 4, md: 12 }}
       >
         <Text fontSize="sm" mb={{ base: 2, md: 0 }}>
-          © {new Date().getFullYear()} Explore the World. All rights reserved.
+          © {new Date().getFullYear()} Explore the World with Maalima. All rights reserved.
         </Text>
         <Flex gap={4}>
           <Link href="https://github.com" isExternal>
