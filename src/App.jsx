@@ -2,7 +2,6 @@ import { Box } from '@chakra-ui/react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useUserSession } from './sessions/UserSession';
 import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
 import Navbar from './components/navbar';
 import Report from './pages/Report';
 import './app.css';
@@ -23,7 +22,6 @@ function App() {
       <Box flex="1">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/page1" element={<Dashboard />} />
           <Route path="/pag2" element={<Report />} />
           <Route path="/country/:code" element={<CountryDetails />} />
           <Route path="/login" element={<Login setUser={setUser} />} />

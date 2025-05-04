@@ -6,6 +6,11 @@ const Login = ({ setUser }) => {
   const [password, setPassword] = useState('');
   const toast = useToast();
 
+  const user = {
+    username,
+    token: `${Math.random().toString(36).substr(2)}`, // generate a mock token
+  };
+
   const handleLogin = () => {
     if (!username || !password) {
       toast({
@@ -17,19 +22,18 @@ const Login = ({ setUser }) => {
       });
       return;
     }
-
-    // Simulate a user object (you can replace with your API call)
-    const user = { username };
-
-    // Store the user session in localStorage
+  
+    // Simulate a user object with a mock token
+    const user = {
+      username,
+      token: `mock-token-${Math.random().toString(36).substr(2)}`,
+    };
+  
     localStorage.setItem('user', JSON.stringify(user));
-
-    // Set user state
     setUser(user);
-
-    // Redirect to the profile or home page
     window.location.href = '/userProfile';
   };
+  
 
   return (
     <Container maxW="lg" justifyContent={"center"} alignItems={"center"} py={20}>

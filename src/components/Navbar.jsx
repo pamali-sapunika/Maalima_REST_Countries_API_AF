@@ -37,7 +37,7 @@ const Navbar = ({ user, handleLogout }) => {
             </Flex>
   
             <HStack spacing={2} alignItems={"center"}>
-              <Link to={"/dashboard"} fontSize={{ base: "12", sm: "12" }}>Dashboard</Link>
+              {/* <Link to={"/dashboard"} fontSize={{ base: "12", sm: "12" }}>Dashboard</Link> */}
               <Link to={"/report"} fontSize={{ base: "12", sm: "12" }}>Report</Link>
   
               <Button onClick={toggleColorMode} size={['sm', 'md']}>

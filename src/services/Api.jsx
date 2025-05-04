@@ -12,7 +12,7 @@ export const searchCountryByName = (name) => axios.get(`${BASE_URL}/name/${name}
 export const filterByRegion = (region) => axios.get(`${BASE_URL}/region/${region}`);
 
 //Filter by LANGUAGE
-export const filterByLanguage = (language) =>axios.get(`https://restcountries.com/v3.1/lang/${language}`);
+export const filterByLanguage = (language) =>axios.get(`${BASE_URL}/lang/${language}`);
 
 //Get full details by COUNTRY CODE
 export const getCountryByCode = (code) => axios.get(`${BASE_URL}/alpha/${code}`);
