@@ -7,33 +7,30 @@ const AllCountriesList = ({ countries, loading, currentPage, setCurrentPage, cou
     const indexOfFirst = indexOfLast - countriesPerPage;
     const currentCountries = countries.slice(indexOfFirst, indexOfLast);
     const totalPages = Math.ceil(countries.length / countriesPerPage);
-    
-    // Retrieve user data from localStorage and initialize favorites if not already defined
     const storedUser = JSON.parse(localStorage.getItem('user')) || { favorites: [] };
     console.log(storedUser);
-console.log(storedUser.favorites);
-    
-    // Set up state to store user data
+    console.log(storedUser.favorites);
     const [user, setUser] = useState(storedUser);
 
     const addToFavorites = (country) => {
-        // Ensure favorites is initialized as an array if not already
         if (!user.favorites) {
             user.favorites = [];
         }
     
-        // Add the country to the favorites
-        user.favorites.push(country.name);
+        const alreadyFavorited = user.favorites.some(fav => fav.cca3 === country.cca3);
+        if (alreadyFavorited) {
+            alert(`${country.name.common} is already in your favorites.`);
+            return;
+        }
     
-        // Store the updated user object back to localStorage
+        user.favorites.push(country); 
+    
         localStorage.setItem('user', JSON.stringify(user));
-    
-        // Update the user state to trigger a re-render
         setUser({ ...user });
     
-        // Alert to confirm the country was added to favorites
-        alert(`${country.name} has been added to your favorites!`);
+        alert(`${country.name.common} has been added to your favorites!`);
     };
+    
     
 
     if (loading) {
@@ -48,12 +45,11 @@ console.log(storedUser.favorites);
         <>
             <SimpleGrid columns={[1, 2, 3, 4]} spacing={6} mt={6}>
                 {currentCountries.map((country) => {
-                    // Check if the country is already in the favorites list
                     const isFavorite = user.favorites?.includes(country.name.common) || false;
 
                     return (
                         <Link
-                            key={country.cca3} // Move key here!
+                            key={country.cca3}
                             to={`/country/${country.cca3}`}
                             style={{ textDecoration: "none" }}
                         >
@@ -88,7 +84,6 @@ console.log(storedUser.favorites);
                                     {country.languages ? Object.values(country.languages).join(", ") : "N/A"}
                                 </Text>
 
-                                {/* Button to add country to favorites */}
                                 <Button
                                     onClick={() => addToFavorites(country)}
                                     colorScheme={isFavorite ? "green" : "teal"}

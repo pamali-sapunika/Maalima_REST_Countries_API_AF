@@ -9,6 +9,8 @@ import Report from './pages/Report';
 import CountryDetails from './pages/CountryDetails';
 import Login from './pages/Login';
 import UserProfile from './pages/UserProfile';
+import Favorites from './pages/Favorites';
+
 
 function App() {
   const { user, setUser, handleLogout } = useUserSession();
@@ -22,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/report" element={<Report />} />
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/country/:code" element={<CountryDetails />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/userProfile" element={user ? <UserProfile user={user} /> : <Login setUser={setUser} />} />

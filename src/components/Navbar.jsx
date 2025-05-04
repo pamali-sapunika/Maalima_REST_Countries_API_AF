@@ -1,6 +1,7 @@
 import { Button, Container, Flex, HStack, Box, useColorMode, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { LuMoon, LuSun } from "react-icons/lu";
+import Favorites from "../pages/Favorites";
 
 const Navbar = ({ user, handleLogout }) => {
     
@@ -49,6 +50,11 @@ const Navbar = ({ user, handleLogout }) => {
               ) : (
                 <Button onClick={() => window.location.href = '/login'} size="sm">Login</Button>
               )}
+
+            <Button as={Link} to="/favorites" colorScheme="blue" mt={4}>
+            Go to Favorites
+            </Button>
+
             </HStack>
           </Flex>
         </Box>
