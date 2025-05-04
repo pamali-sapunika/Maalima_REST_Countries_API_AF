@@ -1,8 +1,9 @@
 import { Box, Text, Heading, VStack, Card, CardBody, Divider, Button, useColorModeValue } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext'; // ✅ Import context
 
-const UserProfile = ({ user }) => {
-  const storedUser = user || JSON.parse(localStorage.getItem('user'));
+const UserProfile = () => {
+  const { user } = useUser(); // ✅ Get user from context
   const navigate = useNavigate();
 
   // Theme-aware colors
@@ -15,23 +16,30 @@ const UserProfile = ({ user }) => {
   return (
     <Box bg={bgColor} minH="100vh" display="flex" justifyContent="center" alignItems="center" px={4}>
       <Card maxW="md" w="full" boxShadow="lg" borderRadius="xl" bg={cardBg}>
+
         <CardBody>
           <VStack spacing={4} align="start">
+
             <Heading fontSize="30px" fontWeight="light" color={headingColor}>
               User Profile
             </Heading>
+
             <Divider />
+
             <Text fontSize="md" color={textColor}>
               <Text as="span" fontWeight="medium">Username:</Text>{' '}
-              <Text as="span" fontWeight="light">{storedUser?.username || "Guest"}</Text>
+              <Text as="span" fontWeight="light">{user?.username || "Guest"}</Text>
             </Text>
+
             <Text fontSize="md" color={tokenColor}>
               <Text as="span" fontWeight="medium">Session Token:</Text>{' '}
-              <Text as="span" fontWeight="light">{storedUser?.token || "None"}</Text>
+              <Text as="span" fontWeight="light">{user?.token || "None"}</Text>
             </Text>
+
             <Button colorScheme="yellow" onClick={() => navigate('/')}>
               Back to Home
             </Button>
+            
           </VStack>
         </CardBody>
       </Card>

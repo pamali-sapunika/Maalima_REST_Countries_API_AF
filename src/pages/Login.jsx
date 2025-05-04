@@ -1,10 +1,14 @@
 import { Container, Box, Button, FormControl, FormLabel, Input, Heading, useToast, FormHelperText } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState} from 'react';
+import { useUser } from '../context/UserContext'; // Import the React COntext hook
+import { useNavigate } from 'react-router-dom'; 
 
-const Login = ({ setUser }) => {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
   const toast = useToast();
+  const { setUser } = useUser(); 
 
   const handleLogin = () => {
     if (!username.trim()) {
@@ -33,9 +37,8 @@ const Login = ({ setUser }) => {
       favorites: [],
     };
 
-    localStorage.setItem('user', JSON.stringify(user));
-    setUser(user);
-    window.location.href = '/userProfile';
+    setUser(user); // save in context
+    window.location.href = '/userProfile'; 
   };
 
   return (

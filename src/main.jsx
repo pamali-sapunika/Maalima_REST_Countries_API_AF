@@ -4,12 +4,15 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import theme from './styles/theme.js'
+import { UserProvider } from './context/UserContext.jsx' 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <ChakraProvider theme={theme}>
-        <App />
+        <UserProvider>
+          <App />
+        </UserProvider>
       </ChakraProvider>
     </BrowserRouter>
   </StrictMode>,
