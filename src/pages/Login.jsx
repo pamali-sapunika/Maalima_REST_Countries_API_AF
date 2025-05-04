@@ -1,15 +1,25 @@
-// src/pages/Login.js
-import { Container, Box, Button, FormControl, FormLabel, Input, Heading, useToast } from '@chakra-ui/react';
+import { Container, Box, Button, FormControl, FormLabel, Input, Heading, useToast, FormHelperText } from '@chakra-ui/react';
 import { useState } from 'react';
 
 const Login = ({ setUser }) => {
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const toast = useToast();
 
   const handleLogin = () => {
     if (!username.trim()) {
       toast({
         title: 'Username required',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    if (!password.trim()) {
+      toast({
+        title: 'Password required',
         status: 'error',
         duration: 3000,
         isClosable: true,
@@ -29,16 +39,49 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    <Container centerContent py={20}>
-      <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="md">
-        <Heading mb={6} textAlign="center">Login</Heading>
-        <FormControl mb={4}>
-          <FormLabel>Username</FormLabel>
-          <Input value={username} onChange={(e) => setUsername(e.target.value)} />
-        </FormControl>
-        <Button colorScheme="teal" w="full" onClick={handleLogin}>Login</Button>
-      </Box>
-    </Container>
+    <Box
+      position="relative"
+      bgImage="url('https://images.pexels.com/photos/753337/pexels-photo-753337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')"
+      bgSize="cover"
+      bgPosition="center"
+      bgRepeat="no-repeat"
+      h="100vh"
+      backdropFilter="blur(10px)"
+    >
+      <Container centerContent py={{ base: 10, md: 20 }}>
+        <Box bg="rgba(196, 196, 196, 0.6)" p={6} rounded="md" shadow="md" w="full" maxW="md">
+          <Heading mb={6} textAlign="center" fontSize={{ base: '2xl', md: '3xl' }} textColor={"white"}>
+            Login
+          </Heading>
+          <FormControl mb={4}>
+            <FormLabel textColor={"white"}>Username</FormLabel>
+            <Input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter your username"
+              isRequired
+              textColor={"white"}
+              _placeholder={{ textColor: "#852a7c" }} 
+            />
+          </FormControl>
+          <FormControl mb={4}>
+            <FormLabel textColor={"white"}>Password</FormLabel>
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              isRequired
+              _placeholder={{ textColor: "#852a7c" }} 
+            />
+            <FormHelperText textColor={"grey.700"}>Enter your password securely</FormHelperText>
+          </FormControl>
+          <Button colorScheme="teal" w="full" onClick={handleLogin}>
+            Login
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

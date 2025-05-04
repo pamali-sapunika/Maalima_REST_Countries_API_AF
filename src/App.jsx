@@ -20,7 +20,7 @@ function App() {
   const isLoginPage = location.pathname === '/login';
 
   return (
-    <Box pt="60px" minH="100vh" display="flex" flexDirection="column">
+    <Box minH="100vh" display="flex" flexDirection="column">
       {!isLoginPage && <Navbar user={user} handleLogout={handleLogout} />}
       <Box flex="1">
         <Routes>
