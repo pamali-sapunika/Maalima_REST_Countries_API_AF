@@ -74,9 +74,15 @@ const Login = ({ setUser }) => {
               isRequired
               _placeholder={{ textColor: "#852a7c" }} 
             />
-            <FormHelperText textColor={"grey.700"}>Enter your password securely</FormHelperText>
+            <FormHelperText textColor={"black"}>Enter your password securely</FormHelperText>
           </FormControl>
-          <Button colorScheme="teal" w="full" onClick={handleLogin}>
+          <Button
+            bgGradient="linear(to-r, #fda41a, #655186, #2386dc)"
+            color="white"
+            _hover={{ opacity: 0.9 }}
+            w="full"
+            onClick={handleLogin}
+          >
             Login
           </Button>
         </Box>

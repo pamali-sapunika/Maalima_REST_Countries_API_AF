@@ -1,6 +1,17 @@
-import { Container, Box, Text, Flex } from "@chakra-ui/react";
+import {
+  Container,
+  Box,
+  Text,
+  Flex,
+  useColorModeValue
+} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { getAllCountries, searchCountryByName, filterByRegion, filterByLanguage } from "../services/api";
+import {
+  getAllCountries,
+  searchCountryByName,
+  filterByRegion,
+  filterByLanguage
+} from "../services/api";
 import SearchBar from "../components/SearchBar";
 import RegionFilter from "../components/RegionFilter";
 import LanguageFilter from "../components/LangaugeFilter";
@@ -9,12 +20,20 @@ import AllCountries from "../components/AllCountries";
 import LogoStyle1 from "../components/LogoStyle1";
 import { FaRegHandPointer } from "react-icons/fa";
 import { GoLocation } from "react-icons/go";
+import PopularCountriesCarousal from "../components/PopularCountriesCarousal";
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const countriesPerPage = 12;
+
+  const bgOverlay = useColorModeValue("blackAlpha.400", "blackAlpha.700");
+  const cardBg = useColorModeValue("whiteAlpha.700", "gray.700");
+  const highlightText = useColorModeValue("gray.700", "whiteAlpha.900");
+  const iconBg = useColorModeValue("whiteAlpha.600", "whiteAlpha.200");
+  const iconHover = useColorModeValue("whiteAlpha.800", "whiteAlpha.300");
+  const gradientBg = useColorModeValue("linear(to-r, whiteAlpha.700, blue.50)", "linear(to-r, gray.800, gray.700)");
 
   useEffect(() => {
     fetchCountries();
@@ -75,6 +94,7 @@ const Home = () => {
 
   return (
     <Container maxW="container.xxl" px={0}>
+      {/* Hero Section */}
       <Box height={{ base: "600px", md: "700px" }} position="relative" overflow="hidden">
         <Box
           position="absolute"
@@ -95,7 +115,7 @@ const Home = () => {
           left={0}
           width="100%"
           height="100%"
-          bg="blackAlpha.400"
+          bg={bgOverlay}
           zIndex={1}
         />
 
@@ -130,14 +150,17 @@ const Home = () => {
             <Box mt={6}>
               <Box
                 as="button"
-                bg="white"
-                color="gray.700"
+                bg={useColorModeValue("white", "grey")}  
+                color={useColorModeValue("grey", "white")}  
                 px={6}
                 py={2}
                 borderRadius="full"
                 fontWeight="bold"
                 fontSize={{ base: "sm", md: "md" }}
-                _hover={{ bg: "gray.600", color: "white" }}
+                _hover={{
+                  bg: useColorModeValue("white", "black"), 
+                  color: "white",
+                }}
               >
                 Start Exploring
               </Box>
@@ -145,6 +168,7 @@ const Home = () => {
           </Box>
         </Box>
 
+        {/* Hero Bottom Icons */}
         <Flex
           position="absolute"
           bottom="3px"
@@ -156,51 +180,54 @@ const Home = () => {
           width="100%"
           justify="center"
         >
-          {/* Click Icon Block */}
+          {/* Click Icon */}
           <Flex align="center" gap={2}>
             <Box
-              bg="whiteAlpha.600"
+              bg={iconBg}
               backdropFilter="blur(6px)"
               borderRadius="full"
               p={2}
               boxShadow="md"
-              _hover={{ bg: "whiteAlpha.800" }}
+              _hover={{ bg: iconHover }}
             >
               <FaRegHandPointer size={18} color="#333" />
             </Box>
-            <Text color="white" fontSize="xs" textAlign="center" maxW="100px">
+            <Text color="white" mb={{ base: "2", md: "4" }} fontSize={{ base: "xs", md: "md" }} maxW="200px">
               Click to discover<br />
               interactive details
             </Text>
           </Flex>
 
-          {/* Location Icon Block */}
+          {/* Location Icon */}
           <Flex align="center" gap={2}>
             <Box
-              bg="whiteAlpha.600"
+              bg={iconBg}
               backdropFilter="blur(6px)"
               borderRadius="full"
               p={2}
               boxShadow="md"
-              _hover={{ bg: "whiteAlpha.800" }}
+              _hover={{ bg: iconHover }}
             >
               <GoLocation size={18} color="#333" />
             </Box>
-            <Text color="white" fontSize="xs" textAlign="center" maxW="100px">
+            <Text color="white" mb={{ base: "2", md: "4" }} fontSize={{ base: "xs", md: "md" }} maxW="200px">
               Find places by<br />
               geographical region
             </Text>
           </Flex>
         </Flex>
-
       </Box>
 
+      {/* Other Components */}
       <LogoStyle1 imageSrc="/sailboat_yellow.png" />
+
+      <PopularCountriesCarousal />
 
       <FeaturedCountries />
 
+      {/* Filters Section */}
       <Box
-        bgGradient="linear(to-r, whiteAlpha.700, blue.50)"
+        bgGradient={gradientBg}
         borderRadius="xl"
         boxShadow="md"
         p={6}
@@ -208,11 +235,7 @@ const Home = () => {
         mx={{ base: 2, md: 4 }}
         textAlign="center"
       >
-        <Text
-          fontSize={{ base: "md", sm: "xl", md: "2xl" }}
-          fontWeight="light"
-          mb={{ base: 1, md: 2 }}
-        >
+        <Text fontSize={{ base: "md", sm: "xl", md: "2xl" }} fontWeight="light" mb={{ base: 1, md: 2 }}>
           Search for Countries Worldwide
         </Text>
         <Flex
@@ -233,7 +256,7 @@ const Home = () => {
         </Flex>
       </Box>
 
-      <Box px={{ base: 3, md: 4 }} >
+      <Box px={{ base: 3, md: 4 }}>
         <AllCountries
           countries={countries}
           loading={loading}

@@ -3,3 +3,22 @@ body {
     font-weight: 400; 
 }
       
+/* Custom dots styling */
+.slick-dots.custom-dots {
+    position: absolute;
+    bottom: 20px;  /* Adjust the positioning */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.slick-dots.custom-dots li button:before {
+    font-size: 12px; /* Adjust the size */
+    color: rgba(255, 255, 255, 0.7); /* White color with transparency */
+}
+
+.slick-dots.custom-dots li.slick-active button:before {
+    color: white;  /* Active dot color */
+}
+
+

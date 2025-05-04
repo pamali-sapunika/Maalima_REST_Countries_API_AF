@@ -30,8 +30,8 @@ const Navbar = ({ user, handleLogout }) => {
       <Flex h={20} alignItems="center" justifyContent="space-between">
         <Flex alignItems="center">
           <Image src="/sailboat_black.png" alt="Logo" boxSize="30px" mr={2} />
-          <Link to="/" fontSize="19px" color="gray.800">
-            Countries API
+          <Link to="/" fontSize="25px" color="gray.800">
+            Countries
           </Link>
         </Flex>
 
@@ -43,7 +43,7 @@ const Navbar = ({ user, handleLogout }) => {
             <Button as={Link} to="/login" size="sm">Login</Button>
           )}
 
-          <Button as={Link} to="/favorites" size="sm" colorScheme="blue">
+          <Button as={Link} to="/favorites" size="sm" bgColor=" #f7bf45">
             Favorites
           </Button>
 

@@ -2,24 +2,26 @@ import React, { useEffect, useState } from "react";
 import {
   Box,
   Text,
-  Button,
   Spinner,
   Image,
-  Flex,
-  Card,
-  CardBody,
-  CardFooter,
   Heading,
-  Divider,
+  VStack,
+  SimpleGrid,
+  useBreakpointValue,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import axios from "axios";
 import Slider from "react-slick";
+import LogoStyle1 from "./LogoStyle1";
+import OvelCard from "./OvelCard";
 
 const FeaturedCountries = () => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const isCarouselView = useBreakpointValue({ base: true, md: true, lg: false });
 
+  
   useEffect(() => {
     const fetchRandomCountries = async () => {
       setLoading(true);
@@ -40,10 +42,6 @@ const FeaturedCountries = () => {
               cca3: country.cca3,
               capital: country.capital?.[0] || "N/A",
               region: country.region || "N/A",
-              population: country.population || 0,
-              languages: country.languages
-                ? Object.values(country.languages).join(", ")
-                : "N/A",
             });
           }
         }
@@ -66,69 +64,75 @@ const FeaturedCountries = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000, // Change country every 3 seconds
-    arrows: false, // Disable arrows
+    autoplaySpeed: 3000,
+    arrows: false,
+    dotsClass: "slick-dots custom-dots",
   };
 
-  return (
-    <Box
-      mt={10}
-      px={4}
-      py={10}
-      backgroundImage="url('https://images.pexels.com/photos/773471/pexels-photo-773471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')"
-      backgroundSize="cover"
-      backgroundPosition="center"
-      backgroundRepeat="no-repeat"
+  const renderOvalCard = (country) => (
+    <VStack
+      key={country.cca3}
+      spacing={4}
+      bg="whiteAlpha.800"
+      p={4}
       borderRadius="xl"
+      boxShadow="xl"
+      transition="transform 0.3s ease"
+      _hover={{ transform: "scale(1.05)", boxShadow: "2xl" }}
     >
-      <Text textAlign="center" fontSize={{ base: "22px", md: "md" }} fontWeight="medium" mb={6} color="white">
-        Countries of the Day
-      </Text>
-
       <Box
-        backdropFilter="blur(10px)"
-        backgroundColor="rgba(255, 255, 255, 0.2)"
-        borderRadius="xl"
-        padding={6}
-        boxShadow="lg"
+        width="150px"
+        height="150px"
+        borderRadius="full"
+        overflow="hidden"
+        boxShadow="md"
+        border="2px solid #f7bf45"
       >
+        <Image
+          src={country.flag}
+          alt={`Flag of ${country.name}`}
+          width="100%"
+          height="100%"
+          objectFit="cover"
+        />
+      </Box>
+      <Heading size="sm" color="gray.700">{country.name}</Heading>
+      <Text fontSize="sm" color="gray.600"><strong>Capital:</strong> {country.capital}</Text>
+      <Text fontSize="sm" color="gray.600"><strong>Region:</strong> {country.region}</Text>
+    </VStack>
+  );
+  
+  return (
+    <Box mt={10} px={4} py={10}>
+      <Box mb={6} textAlign="center">
+        <LogoStyle1 imageSrc={"./sailboat_yellow.png"} />
+        <Text fontSize={{ base: "22px", md: "25px", lg: "30px" }} fontWeight="medium" >
+          Countries of the Day
+        </Text>
+        <Text fontSize={{ base: "sm", md: "md" }} fontWeight="light" >
+          Discover randomly featured countries around the globe.
+        </Text>
+      </Box>
+
+      <Box  borderRadius="xl" p={6} boxShadow="lg">
         {loading ? (
-          <Spinner size="xl" />
-        ) : error ? (
-          <Text color="red.500">{error}</Text>
-        ) : (
-          <Slider {...carouselSettings}>
-            {countries.map((country) => (
-              <Box key={country.cca3} mb={6}>
-                <Card
-                  backdropFilter="blur(3px)"
-                  backgroundColor="rgba(255, 255, 255, 0.7)"
-                  boxShadow="md"
-                >
-                  <Image
-                    src={country.flag}
-                    alt={`Flag of ${country.name}`}
-                    height="180px"
-                    objectFit="cover"
-                    borderTopRadius={"6px"}
-                  />
-                  <CardBody>
-                    <Heading size="md">{country.name}</Heading>
-                    <Text mt={2}><strong>Capital:</strong> {country.capital}</Text>
-                    <Text><strong>Region:</strong> {country.region}</Text>
-                    <Text><strong>Population:</strong> {country.population.toLocaleString()}</Text>
-                    <Text><strong>Languages:</strong> {country.languages}</Text>
-                  </CardBody>
-                  <Divider />
-                  <CardFooter justifyContent="center">
-                    <Button variant="solid" colorScheme="teal">
-                      View More
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </Box>
-            ))}
-          </Slider>
+            <Spinner size="xl" />
+          ) : error ? (
+            <Text color="red.500">{error}</Text>
+          ) : isCarouselView ? (
+            <Slider {...carouselSettings}>
+              {countries.map((country) => (
+                <Box key={country.cca3}>
+                  <OvelCard country={country} />
+                </Box>
+              ))}
+            </Slider>
+          ) : (
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} spacing={6}>
+              {countries.map((country) => (
+                <OvelCard key={country.cca3} country={country} />
+              ))}
+            </SimpleGrid>
         )}
       </Box>
     </Box>

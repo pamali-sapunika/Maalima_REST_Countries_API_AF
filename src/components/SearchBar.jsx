@@ -26,7 +26,7 @@ const SearchBar = ({ onSearch }) => {
             backgroundColor="white"
             width="100%"
           />
-          <Button colorScheme="blue" type="submit">
+          <Button bgColor="#f7bf45" type="submit" color={"white"}>
             Search
           </Button>
         </Flex>
