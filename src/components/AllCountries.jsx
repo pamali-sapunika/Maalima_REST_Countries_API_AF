@@ -99,14 +99,23 @@ const AllCountriesList = ({ countries, loading, currentPage, setCurrentPage, cou
 
             {/* Pagination */}
             <Flex justify="center" mt={8} gap={2} wrap="wrap">
-                <Button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} isDisabled={currentPage === 1}>
+                <Button
+                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                    isDisabled={currentPage === 1}
+                    fontSize="sm" // Make the text smaller
+                >
                     Previous
                 </Button>
 
                 {currentPage > 3 && (
                     <>
-                        <Button onClick={() => setCurrentPage(1)}>1</Button>
-                        {currentPage > 4 && <Text>...</Text>}
+                        <Button
+                            onClick={() => setCurrentPage(1)}
+                            fontSize="sm" // Make the text smaller
+                        >
+                            1
+                        </Button>
+                        {currentPage > 4 && <Text fontSize="sm">...</Text>} {/* Make ellipsis text smaller */}
                     </>
                 )}
 
@@ -119,6 +128,7 @@ const AllCountriesList = ({ countries, loading, currentPage, setCurrentPage, cou
                                 onClick={() => setCurrentPage(page)}
                                 variant={currentPage === page ? "solid" : "outline"}
                                 colorScheme={currentPage === page ? "blue" : "gray"}
+                                fontSize="sm" // Make the text smaller
                             >
                                 {page}
                             </Button>
@@ -129,12 +139,21 @@ const AllCountriesList = ({ countries, loading, currentPage, setCurrentPage, cou
 
                 {currentPage < totalPages - 2 && (
                     <>
-                        <Text>...</Text>
-                        <Button onClick={() => setCurrentPage(totalPages)}>{totalPages}</Button>
+                        <Text fontSize="sm">...</Text> {/* Make ellipsis text smaller */}
+                        <Button
+                            onClick={() => setCurrentPage(totalPages)}
+                            fontSize="sm" // Make the text smaller
+                        >
+                            {totalPages}
+                        </Button>
                     </>
                 )}
 
-                <Button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} isDisabled={currentPage === totalPages}>
+                <Button
+                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                    isDisabled={currentPage === totalPages}
+                    fontSize="sm" // Make the text smaller
+                >
                     Next
                 </Button>
             </Flex>

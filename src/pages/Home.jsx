@@ -208,28 +208,32 @@ const Home = () => {
         mx={{ base: 2, md: 4 }}
         textAlign="center"
       >
-        <Text fontSize={{ base: "xl", md: "2xl" }} fontWeight="light" mb={4}>
+        <Text
+          fontSize={{ base: "md", sm: "xl", md: "2xl" }}
+          fontWeight="light"
+          mb={{ base: 1, md: 2 }}
+        >
           Search for Countries Worldwide
         </Text>
         <Flex
           direction={{ base: "column", md: "row" }}
           justify="center"
           wrap="wrap"
-          gap={4}
+          gap={{ base: 1, md: 2 }}
         >
-          <Box flex="1" minW="200px" maxW="500px">
+          <Box flex="1" minW="200px" maxW="500px" mb={{ base: 1, md: 0 }}>
             <SearchBar onSearch={handleSearch} />
           </Box>
-          <Box minW="150px">
+          <Box minW="150px" mb={{ base: 1, md: 0 }}>
             <RegionFilter onSelectRegion={handleRegionSelect} />
           </Box>
-          <Box minW="150px">
+          <Box minW="150px" mb={{ base: 1, md: 0 }}>
             <LanguageFilter onSelectLanguage={handleLanguageSelect} />
           </Box>
         </Flex>
       </Box>
 
-      <Box px={{ base: 2, md: 4 }}>
+      <Box px={{ base: 3, md: 4 }} >
         <AllCountries
           countries={countries}
           loading={loading}

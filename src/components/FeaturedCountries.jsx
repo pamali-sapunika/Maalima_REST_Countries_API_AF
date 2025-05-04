@@ -81,7 +81,7 @@ const FeaturedCountries = () => {
       backgroundRepeat="no-repeat"
       borderRadius="xl"
     >
-      <Text textAlign="center" fontSize="35px" fontWeight="medium" mb={6} color="white">
+      <Text textAlign="center" fontSize={{ base: "22px", md: "md" }} fontWeight="medium" mb={6} color="white">
         Countries of the Day
       </Text>
 
