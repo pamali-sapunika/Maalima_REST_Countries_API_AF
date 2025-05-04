@@ -11,7 +11,7 @@ import {
   searchCountryByName,
   filterByRegion,
   filterByLanguage
-} from "../services/api";
+} from "../services/API";
 import SearchBar from "../components/SearchBar";
 import RegionFilter from "../components/RegionFilter";
 import LanguageFilter from "../components/LangaugeFilter";
